@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/light_green"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/application_title">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:padding="25dp"
+        android:background="@drawable/box_rounded_corners"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_signing_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Username"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray"
+            android:backgroundTint="@color/dark_gray"
+            android:ems="10"
+            android:inputType="text">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/et_signing_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Password"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray"
+            android:backgroundTint="@color/dark_gray"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:layout_marginTop="5dp">
+
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_signin_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:background="@drawable/button_selector">
+
+        </Button>
+
+        <Button
+            android:id="@+id/btn_signin_createuser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CREATE ACCOUNT"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_selector">
+
+        </Button>
+
+    </LinearLayout>
+
+</LinearLayout>

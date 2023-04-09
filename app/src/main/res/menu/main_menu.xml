@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/baseline_home_24">
+        </item>
+
+        <item
+            android:id="@+id/nav_daily_trans"
+            android:title="Transactions"
+            android:icon="@drawable/baseline_payments_24">
+        </item>
+
+        <item
+            android:id="@+id/nav_month_bills"
+            android:title="Bills"
+            android:icon="@drawable/baseline_backup_table_24">
+        </item>
+
+        <item
+            android:id="@+id/nav_budget"
+            android:title="Budget"
+            android:icon="@drawable/baseline_attach_money_24">
+        </item>
+
+        <item
+            android:id="@+id/nav_calendar"
+            android:title="Calendar"
+            android:icon="@drawable/baseline_calendar_month_24">
+
+        </item>
+
+        <item
+            android:id="@+id/nav_profile"
+            android:title="Profile"
+            android:icon="@drawable/baseline_supervised_user_circle_24">
+        </item>
+
+        <item
+            android:id="@+id/nav_about"
+            android:title="About"
+            android:icon="@drawable/baseline_attribution_24">
+
+        </item>
+
+        <item
+            android:id="@+id/nav_sign_out"
+            android:title="Sign Out"
+            android:icon="@drawable/baseline_logout_24">
+        </item>
+    </group>
+
+</menu>

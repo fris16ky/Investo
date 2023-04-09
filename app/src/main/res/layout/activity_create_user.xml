@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/light_green"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        style="@style/application_title">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="25dp"
+        android:background="@drawable/box_rounded_corners"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_firstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="First Name"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray"
+            android:backgroundTint="@color/dark_gray"
+            android:ems="10"
+            android:inputType="text">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/et_lastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Last name"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray"
+            android:backgroundTint="@color/dark_gray"
+            android:ems="10"
+            android:inputType="text"
+            android:layout_marginTop="5dp">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Email"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray"
+            android:backgroundTint="@color/dark_gray"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="5dp">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Username"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray"
+            android:backgroundTint="@color/dark_gray"
+            android:ems="10"
+            android:inputType="text"
+            android:layout_marginTop="5dp">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Password"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray"
+            android:backgroundTint="@color/dark_gray"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:layout_marginTop="5dp">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/et_repassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Verify Password"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textColorHint="@color/dark_gray"
+            android:backgroundTint="@color/dark_gray"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="30dp">
+
+        </EditText>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_createActivity_createUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Create User"
+        android:textSize="25sp"
+        android:textColor="@color/dark_gray"
+        android:background="@drawable/button_selector"
+        android:layout_marginTop="30dp">
+
+    </Button>
+
+</LinearLayout>

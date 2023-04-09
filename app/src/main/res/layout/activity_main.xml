@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_green"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/mina_appName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        style="@style/application_title">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/btn_getStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mina_appName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/button_selector"
+        android:onClick="btnGetStarted"
+        android:text="GET STARTED"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gray"
+        android:textSize="20sp">
+
+    </Button>
+
+</RelativeLayout>

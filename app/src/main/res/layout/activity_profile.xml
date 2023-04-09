@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    tools:context=".ProfileActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/default_pic"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/baseline_supervised_user_circle_24"
+            app:tint="@color/light_green">
+
+        </ImageView>
+
+        <Button
+            android:id="@+id/edit_profile_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="editProfile"
+            android:layout_gravity="center"
+            android:background="@drawable/button_selector"
+            android:text="Edit Profile" />
+
+        <Button
+            android:id="@+id/change_pic_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="choosePicture"
+            android:background="@drawable/button_selector"
+            android:text="Change Picture"
+            android:visibility="gone" />
+
+
+        <!--Table to contain the profile pictures side by side in rows-->
+        <TableLayout
+            android:id="@+id/table_layout"
+            android:layout_width="390dp"
+            android:layout_height="wrap_content"
+            android:padding="0dp">
+
+            <TableRow>
+
+                <!--don't forget to remove old files from the drawable too-->
+
+                <ImageView
+                    android:id="@+id/tigers_propic"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="15dp"
+                    android:onClick="imageSelectedTigers"
+                    android:visibility="gone"
+                    app:srcCompat="@mipmap/detroit_tigers_foreground" />
+
+                <!--This image's aspect ratio is a bit bigger than the others; hence the
+                smaller width and height (forcing it)-->
+                <ImageView
+                    android:id="@+id/forest_pic"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:onClick="imageSelectedForest"
+                    android:visibility="gone"
+                    app:srcCompat="@mipmap/forest_foreground" />
+
+                <ImageView
+                    android:id="@+id/investo_logo"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="-20dp"
+                    android:onClick="imageSelectedLogo"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_launcher" />
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:id="@+id/discord_profile"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="18dp"
+                    android:onClick="imageSelectedDiscord"
+                    android:visibility="gone"
+                    app:srcCompat="@mipmap/discord_final_foreground" />
+
+                <ImageView
+                    android:id="@+id/detroit_pistons"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:onClick="imageSelectedPistons"
+                    android:visibility="gone"
+                    app:srcCompat="@mipmap/detroit_pistons_foreground" />
+
+                <!--The -MarginLeft is for counteracting the padding that won't overwrite-->
+                <ImageView
+                    android:id="@+id/detroit_lions"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="-20dp"
+                    android:onClick="imageSelectedLions"
+                    android:visibility="gone"
+                    app:srcCompat="@mipmap/detroit_lions_foreground" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <LinearLayout
+            android:id="@+id/align_center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/confirm_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="confirmPicture"
+                android:layout_marginLeft="5dp"
+                android:text="Confirm" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/profile_navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/header_menu"
+        app:menu="@menu/main_menu">
+
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>

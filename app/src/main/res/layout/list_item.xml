@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_adapter_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:textAlignment="center">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_adapter_firstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FIRST NAME"
+        android:textAlignment="center">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_adapter_lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LAST NAME"
+        android:textAlignment="center">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_adapter_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EMAIL"
+        android:textAlignment="center">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_adapter_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USERNAME"
+        android:textAlignment="center">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_adapter_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PASSWORD"
+        android:textAlignment="center">
+
+    </TextView>
+
+</LinearLayout>
