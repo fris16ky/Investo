@@ -8,18 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.applandeo.materialcalendarview.EventDay;
-
 import java.io.ByteArrayOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class DbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Investo.db";
@@ -32,7 +27,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     //not sure if this is needed or not ATM
     public static synchronized DbHelper getInstance(Context context) {
-
         if (instance == null) {
             instance = new DbHelper(context.getApplicationContext());
         }
@@ -49,6 +43,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 Contract.User.COLUMN_EMAIL + " TEXT, " +
                 Contract.User.COLUMN_USERNAME + " TEXT, " +
                 Contract.User.COLUMN_PROFILEPIC + " BLOB, " +
+                Contract.User.COLUMN_ISADMIN + " BOOLEAN, " +
                 Contract.User.COLUMN_PASSWORD + " TEXT)";
 
         db.execSQL(CREATE_USER_TABLE);
@@ -96,6 +91,7 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(Contract.User.COLUMN_USERNAME, user.getUsername());
         cv.put(Contract.User.COLUMN_PASSWORD, user.getPassword());
         cv.put(Contract.User.COLUMN_PROFILEPIC, user.getProfilePic());
+        cv.put(Contract.User.COLUMN_ISADMIN, user.getAdmin());
 
         long insert = db.insert(Contract.User.TABLE_NAME, null, cv);
 
@@ -177,7 +173,7 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String SQL = "SELECT " + Contract.User.COLUMN_FIRSTNAME + " FROM " + Contract.User.TABLE_NAME + " WHERE " + Contract.User.COLUMN_USERNAME + " = ?";
-        Cursor cursor = db.rawQuery(SQL, new String[]{username}, null);
+        Cursor cursor = db.rawQuery(SQL, new String[]{username});
 
         String id = null;
 
@@ -192,7 +188,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return id;
     }
-
     public String getLName(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -232,7 +227,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return id;
     }
-
     public String getUserEmail(String userid) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -250,7 +244,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return email;
     }
-
     public String getUserPass(String userid) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -269,7 +262,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return pass;
     }
-
     public void updateUserPass(String userid, String newPass) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -279,7 +271,6 @@ public class DbHelper extends SQLiteOpenHelper {
         db.update(Contract.User.TABLE_NAME, cv, Contract.User._ID + " =?", new String[]{userid});
         db.close();
     }
-
     public boolean verifyUserName(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -292,7 +283,6 @@ public class DbHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-
     public boolean verifyUser(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -307,7 +297,19 @@ public class DbHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+    public boolean isAdmin(String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+//        String SQL = "SELECT * FROM " + Contract.User.TABLE_NAME + " WHERE " + Contract.User.COLUMN_USERNAME + " = ? and " + Contract.User.COLUMN_PASSWORD + " = ?";
+        String SQL = "SELECT * FROM " + Contract.User.TABLE_NAME + " WHERE " + Contract.User.COLUMN_USERNAME + " =? AND " + Contract.User.COLUMN_PASSWORD + " =? AND " + Contract.User.COLUMN_ISADMIN + " =?";
 
+        Cursor cursor = db.rawQuery(SQL, new String[]{username, password, "1"});
+
+        if (cursor.getCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public boolean addBudget(@NonNull Budget budget) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -324,7 +326,6 @@ public class DbHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-
     public boolean deleteBudget(String itemID) {
         SQLiteDatabase db = getReadableDatabase();
         String SQL = "DELETE FROM " + Contract.Budget.TABLE_NAME + " WHERE " + Contract.Budget._ID + " =?";
@@ -336,7 +337,6 @@ public class DbHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-
     //getting all budget object to array list
     @SuppressLint("Range")
     public ArrayList<Budget> getBudget(String userid) {
@@ -371,7 +371,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return returnList;
     }
-
     public int getUserBudgetTotal(String userid) {
         int total = 0;
 
@@ -390,7 +389,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return total;
     }
-
     public boolean addBill(Bills bill) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -408,7 +406,6 @@ public class DbHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-
     public boolean deleteBill(String itemID) {
         SQLiteDatabase db = getReadableDatabase();
         String SQL = "DELETE FROM " + Contract.Bills.TABLE_NAME + " WHERE " + Contract.Bills._ID + " =?";
@@ -452,7 +449,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return returnList;
     }
-
     @SuppressLint("Range")
     public ArrayList<Bills> getBillsV2(String userid) {
         ArrayList<Bills> returnList = new ArrayList<>();
@@ -484,7 +480,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return returnList;
     }
-
     public int getUserBillTotal(String userid) {
         int total = 0;
 
@@ -503,7 +498,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return total;
     }
-
     @SuppressLint("Range")
     public List<String> getBillDates(String userid) {
         List<String> billDates = new ArrayList<>();
@@ -523,7 +517,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return billDates;
     }
-
     @SuppressLint("Range")
     public String getBillAmount(String eventDay, String userid) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -541,7 +534,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return amount;
     }
-
     public String getBillNote(String eventDay, String userid) {
         SQLiteDatabase db = this.getReadableDatabase();
         String SQL = "SELECT " + Contract.Bills.COLUMN_NOTE + " FROM " + Contract.Bills.TABLE_NAME + " WHERE " + Contract.Bills.COLUMN_DATE + " =? " + " AND " + Contract.Bills.COLUMN_USERID + " =?";
@@ -558,7 +550,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return note;
     }
-
     public boolean addDailyTrans(DailyTrans dailyTrans) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -575,7 +566,6 @@ public class DbHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-
     public boolean deleteDailyTrans(String itemID) {
         SQLiteDatabase db = getReadableDatabase();
         String SQL = "DELETE FROM " + Contract.DailyTrans.TABLE_NAME + " WHERE " + Contract.DailyTrans._ID + " =?";
@@ -588,7 +578,6 @@ public class DbHelper extends SQLiteOpenHelper {
         }
 
     }
-
     public int getUserDailyTransTotal(String userid) {
         int total = 0;
 
@@ -607,7 +596,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return total;
     }
-
     @SuppressLint("Range")
     public ArrayList<DailyTrans> getDailyTrans(String userid) {
         ArrayList<DailyTrans> returnList = new ArrayList<>();
@@ -638,7 +626,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return returnList;
     }
-
     public void updateProfilePicture (String userid, Bitmap image) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -648,7 +635,6 @@ public class DbHelper extends SQLiteOpenHelper {
         db.update(Contract.User.TABLE_NAME, cv, Contract.User._ID + " =?", new String[]{userid});
         //db.close();
     }
-
     public Bitmap getProfilePicture(String userid) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -674,5 +660,62 @@ public class DbHelper extends SQLiteOpenHelper {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
         return stream.toByteArray();
+    }
+
+
+    //ADMIN FUNCS
+    public boolean admin_deleteUserDailyTrans(String userid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String SQL = "DELETE FROM " + Contract.DailyTrans.TABLE_NAME + " WHERE " + Contract.DailyTrans.COLUMN_USERID + " =?";
+        Cursor cursor = db.rawQuery(SQL, new String[]{userid});
+
+        if (cursor.moveToNext()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean admin_deleteUserBills(String userid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String SQL = "DELETE FROM " + Contract.Bills.TABLE_NAME + " WHERE " + Contract.Bills.COLUMN_USERID + " =?";
+        Cursor cursor = db.rawQuery(SQL, new String[]{userid});
+
+        if (cursor.moveToNext()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean admin_deleteUserBudget(String userid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String SQL = "DELETE FROM " + Contract.Budget.TABLE_NAME + " WHERE " + Contract.Budget.COLUMN_USERID + " =?";
+        Cursor cursor = db.rawQuery(SQL, new String[]{userid});
+
+        if (cursor.moveToNext()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean admin_deleteUserAcct(String userid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //need to delete everything from user first because of foreign key restraints
+        admin_deleteUserDailyTrans(userid);
+        admin_deleteUserBills(userid);
+        admin_deleteUserBudget(userid);
+
+        String SQL = "DELETE FROM " + Contract.User.TABLE_NAME + " WHERE " + Contract.User._ID + " =?";
+        Cursor cursor = db.rawQuery(SQL, new String[]{userid});
+
+        if (cursor.moveToNext()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -35,7 +35,7 @@ import java.util.Calendar;
 
 public class OverviewActivity extends AppCompatActivity {
     DbHelper dbHelper;
-    TextView user_first_name, tv_budget, tv_bills, tv_trans, tv_overviewDate, tvBudgetLeftOver;
+    TextView user_first_name, tv_budget, tv_bills, tv_trans, tv_overviewDate, tvBudgetLeftOver, header_username;
     PieChart pieChart;
 
     //FOR NAV BAR
@@ -135,17 +135,17 @@ public class OverviewActivity extends AppCompatActivity {
                 new PieModel(
                         "Budget",
                         Integer.parseInt(String.valueOf(total_user_budget)),
-                        Color.parseColor("#FFA726")));
+                        Color.parseColor("#66BB6A")));
         pieChart.addPieSlice(
                 new PieModel(
                         "Monthly Bills",
                         Integer.parseInt(String.valueOf(total_user_bill)),
-                        Color.parseColor("#66BB6A")));
+                        Color.parseColor("#EF5350")));
         pieChart.addPieSlice(
                 new PieModel(
                         "Daily Transactions",
                         Integer.parseInt(String.valueOf(total_user_daily_trans)),
-                        Color.parseColor("#EF5350")));
+                        Color.parseColor("#FFA726")));
         pieChart.startAnimation();
     }
 
@@ -162,7 +162,7 @@ public class OverviewActivity extends AppCompatActivity {
         String val = dbHelper.getFName(username);
         String res = val.substring(0,1).toUpperCase() + val.substring(1).toLowerCase();
         user_first_name.setText("Welcome back, " + res + "!");
-
+        //header_username.setText(res);
     }
 
     private void navBar() {
@@ -234,6 +234,7 @@ public class OverviewActivity extends AppCompatActivity {
         user_first_name = findViewById(R.id.tv_welcomeBack);
         tv_overviewDate = findViewById(R.id.tv_overviewDate);
         tvBudgetLeftOver = findViewById(R.id.tvBudgetLeftOver);
+        header_username = findViewById(R.id.header_username);
 
         //PIE CHART
         tv_budget = findViewById(R.id.overview_budget_tv);

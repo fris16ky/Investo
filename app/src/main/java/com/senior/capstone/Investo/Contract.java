@@ -21,6 +21,7 @@ public class Contract {
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_PASSWORD = "password";
         public static final String COLUMN_PROFILEPIC = "profilePicture";
+        public static final String COLUMN_ISADMIN = "isAdmin";
     }
 
     //Budget table static attributes

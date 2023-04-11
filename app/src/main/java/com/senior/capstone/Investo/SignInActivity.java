@@ -17,9 +17,7 @@ import android.widget.Toast;
 public class SignInActivity extends AppCompatActivity {
     EditText et_signing_username, et_signing_password;
     Button btn_signin_login, btn_signin_createuser;
-
     DbHelper dbHelper;
-
 
     public static final String EXTRA_SIGNING_FNAME = "firstname";
 
@@ -48,20 +46,30 @@ public class SignInActivity extends AppCompatActivity {
 
                 if (username.equals("") || password.equals("")) {
                     Toast.makeText(SignInActivity.this, "Username or password missing", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Boolean verifyUser = dbHelper.verifyUser(username, password);
+                    Boolean verifyAdmin = dbHelper.isAdmin(username, password);
 
-                    if (verifyUser == true) {
-                        //Toast.makeText(SignInActivity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
-
+                    if (verifyAdmin == true) {
                         //saving username to display the monthly bills/transactions/budget after sign in
                         SharedPreferences sharedPreferences = getSharedPreferences("Data", MODE_PRIVATE);
                         sharedPreferences.edit().putString("username", username).commit();
 
-                        startActivity(new Intent(SignInActivity.this, OverviewActivity.class));
+                        startActivity(new Intent(SignInActivity.this, AdminOverview.class));
 
                     } else {
-                        Toast.makeText(SignInActivity.this, "ERROR: Username and password do not match", Toast.LENGTH_SHORT).show();
+
+                        if (verifyUser == true) {
+                            //saving username to display the monthly bills/transactions/budget after sign in
+                            SharedPreferences sharedPreferences = getSharedPreferences("Data", MODE_PRIVATE);
+                            sharedPreferences.edit().putString("username", username).commit();
+
+                            startActivity(new Intent(SignInActivity.this, OverviewActivity.class));
+
+                        } else {
+                            Toast.makeText(SignInActivity.this, "ERROR: Username and password do not match", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }

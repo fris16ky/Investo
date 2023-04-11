@@ -105,7 +105,7 @@
                             <View
                                 android:layout_width="15dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/R" />
+                                android:background="@color/pc_budget" />
 
                             <!--Text view to display R -->
                             <TextView
@@ -127,7 +127,7 @@
                             <View
                                 android:layout_width="15dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/Python" />
+                                android:background="@color/pc_bills" />
 
                             <!--Text view to display python text -->
                             <TextView
@@ -149,7 +149,7 @@
                             <View
                                 android:layout_width="15dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/CPP" />
+                                android:background="@color/pc_daily_trans" />
 
                             <!--Text view to display C++ text -->
                             <TextView

@@ -9,8 +9,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    DbHelper dbHelper;
     Button btn_getStarted;
     String alreadyStarted = "yes";
 
@@ -24,6 +26,30 @@ public class MainActivity extends AppCompatActivity {
         actionBar.hide();
 
         btn_getStarted = findViewById(R.id.btn_getStarted);
+        btn_getStarted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //create admin user
+                createAdmin();
+            }
+        });
+    }
+
+    private void createAdmin(){
+        dbHelper = new DbHelper(MainActivity.this);
+        User user;
+        user = new User("Admin",
+                "Admin",
+                "admin@investo.com",
+                "admin",
+                "root",
+                String.valueOf(R.drawable.baseline_account_circle_24),
+                true);
+
+        boolean success = dbHelper.addUser(user);
+        //Toast.makeText(this, "ADMIN: " + success, Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(MainActivity.this, CreateUser.class));
     }
 
 

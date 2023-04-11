@@ -131,6 +131,7 @@ public class DailyTransactionActivity extends AppCompatActivity {
     private String getUserID() {
         SharedPreferences sharedPreferences = getSharedPreferences("Data", MODE_PRIVATE);
         String username = sharedPreferences.getString("username", null);
+
         //getting userID from username
         String val = dbHelper.getUserID(username);
 

@@ -28,12 +28,7 @@ public class BudgetActivity extends AppCompatActivity {
     ListView lv_budget_info;
     DbHelper dbHelper;
     ArrayList<Budget> budgetArrayList;
-
-    //TESTING
-//    ListView lv_test2;
-//    MyAdapter adapter;
     BudgetAdapter budgetAdapter;
-
 
     //FOR NAV BAR
     private DrawerLayout drawerLayout;

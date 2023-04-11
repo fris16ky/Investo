@@ -8,6 +8,7 @@ public class User {
     private String username;
     private String password;
     private String profilePic;
+    private Boolean isAdmin;
 
     //initial user creation constructor
     public User(String first_name, String last_name, String email, String username, String password, String profilePic) {
@@ -20,37 +21,21 @@ public class User {
         this.profilePic = profilePic;
     }
 
-    public User(int id, String first_name, String last_name, String email, String username, String password) {
-        this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-    }
-
-    public User(int id, String first_name, String last_name, String email) {
-        this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.email = email;
-    }
-
     public User(String first_name, String last_name, String email) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
     }
 
-    public User(String first_name, String last_name) {
+    //TESTING admin user
+    public User(String first_name, String last_name, String email, String username, String password, String profilePic, Boolean isAdmin) {
         this.first_name = first_name;
         this.last_name = last_name;
-    }
-
-    //TESTING or profile picture
-    public User(int id, String profilePic) {
-        this.id = id;
+        this.email = email;
+        this.username = username;
+        this.password = password;
         this.profilePic = profilePic;
+        this.isAdmin = isAdmin;
     }
 
     public User(String first_name) {
@@ -115,6 +100,14 @@ public class User {
         this.profilePic = profilePic;
     }
 
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -125,6 +118,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", profilePic='" + profilePic + '\'' +
+                ", isAdmin=" + isAdmin +
                 '}';
     }
 }

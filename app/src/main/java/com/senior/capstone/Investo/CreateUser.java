@@ -15,9 +15,7 @@ import android.widget.Toast;
 public class CreateUser extends AppCompatActivity {
     EditText et_firstName, et_lastName, et_email, et_password, et_repassword, et_username;
     Button btn_createUser;
-
     DbHelper dbHelper;
-
     int defaultProfilePic = R.drawable.baseline_account_circle_24;
 
     //Intent keys NEED TO DELETE but im holding onto it because idk lol
@@ -65,7 +63,9 @@ public class CreateUser extends AppCompatActivity {
                                         et_email.getText().toString().trim(),
                                         et_username.getText().toString().trim(),
                                         et_password.getText().toString().trim(),
-                                        String.valueOf(defaultProfilePic));
+                                        String.valueOf(defaultProfilePic),
+                                        false);
+
                                 //Toast.makeText(CreateUser.this, user.toString(), Toast.LENGTH_SHORT).show();
 
                             } catch (Exception e) {
